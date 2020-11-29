@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{%load bootstrap4 %}
+
+{% block body %}
+<section class="probootstrap-slider flexslider2 page-inner">
+  <div class="overlay"></div>
+  <div class="probootstrap-wrap-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+
+          <div class="page-title probootstrap-animate">
+            <div class="probootstrap-breadcrumbs">
+              <a href="#">Home</a><span><a href="{% url 'property:property_list' %}">Properties</a></span><span>{{property_detail}}</span>
+            </div>
+            <h1>{{property_detail.name}}</h1>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="slides">
+    <li style="background-image: url(img/slider_1.jpg);"></li>
+    <li style="background-image: url(img/slider_4.jpg);"></li>
+    <li style="background-image: url(img/slider_2.jpg);"></li>
+  </ul>
+</section>
+  <section class="probootstrap-section">
+    <div class="container">
+     
+      <div class="row">
+        <div class="col-md-12">
+          <p><img src="{{property_detail.images.url}}" class="img-responsive" alt="Free Bootstrap Template by uicookies.com"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Detail</h2>
+         
+          
+          <table class="table table-bordered">
+              <tr>
+                <th scope="row">Type</th>
+                <td scope="col">{{property_detail.property_type}}</th>
+                
+              </tr>
+            
+            
+              <tr>
+                <th scope="row">Location</th>
+                <td>{{property_detail.location}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Area</th>
+                <td>{{property_detail.area}} m2</td>
+              </tr>
+              <tr>
+                <th scope="row">Beds</th>
+                <td>{{property_detail.beds_number}}</td>               
+              </tr>
+              <tr>
+                <th scope="row">Baths</th>
+                <td>{{property_detail.baths_number}}</td>               
+              </tr><tr>
+                <th scope="row">Garages</th>
+                <td>{{property_detail.garages_number}}</td>               
+              </tr>
+            
+          </table>
+        </div>
+       
+      </div>
+    </div>
+  </section>
+
+<section class="probootstrap-section">
+    <div class="container">
+     
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Reserver This Property: Fill this form</h2>
+          <form action="" method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form reserve_form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            {% endbuttons %}
+        </form>
+             
+        </div>
+       
+      </div>
+    </div>
+  </section>
+ 
+
+  {% endblock %}
+
+  
+

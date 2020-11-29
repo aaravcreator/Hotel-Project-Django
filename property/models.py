@@ -3,13 +3,13 @@ from django.db import models
 # Create your models here.
 
 property_type = (
-    ('S',"Sale"),
-    ('R',"Rent")
+    ('Sale',"Sale"),
+    ('Rent',"Rent")
 )
 
 class Property(models.Model):
     name = models.CharField(max_length=50)
-    #location
+    location = models.CharField(max_length =50, null=True)
     property_type = models.CharField(choices=property_type, max_length=10)
     price = models.PositiveIntegerField()
     category = models.ForeignKey('Category',null = True, on_delete=models.SET_NULL)
@@ -28,6 +28,7 @@ class Property(models.Model):
 
 class Category(models.Model):
     category_name = models.CharField(max_length=30)
+    images = models.ImageField(upload_to='category/', null=True)
 
     def __str__(self):
         return self.category_name
@@ -35,4 +36,14 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
+
+class Reserve(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    notes = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
                                                                         
